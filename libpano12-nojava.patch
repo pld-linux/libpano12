@@ -1,0 +1,69 @@
+--- libpano12-2.7.0.9/fakejava.c.orig	1970-01-01 01:00:00.000000000 +0100
++++ libpano12-2.7.0.9/fakejava.c	2005-04-02 23:49:36.832474168 +0200
+@@ -0,0 +1,7 @@
++#include "filter.h"
++
++int JavaUI = FALSE;
++
++void JPrintError ( char * text )
++{
++}
+--- libpano12-2.7.0.9/configure.ac.orig	2005-03-23 13:55:57.000000000 +0100
++++ libpano12-2.7.0.9/configure.ac	2005-04-02 23:50:49.621408568 +0200
+@@ -86,12 +86,6 @@
+ # AC_CHECK_LIB([comdlg32], [main])
+ 
+ AX_CHECK_JAVA
+-if test "x$have_java" != xyes; then
+-    AC_MSG_ERROR([
+-        java must be installed on your system
+-        but configure could not find it.
+-    ])
+-fi
+ 
+ AX_CHECK_ZLIB
+ if test "x$have_zlib" != xyes; then
+--- libpano12-2.7.0.9/Makefile.am.orig	2005-03-23 13:55:55.000000000 +0100
++++ libpano12-2.7.0.9/Makefile.am	2005-04-03 00:03:54.654065464 +0200
+@@ -4,14 +4,14 @@
+ 	  adjust.c  remap.c lmdif.c  file.c \
+ 	  math.c pan.c PTDialogs.c fftn.c fourier.c resample.c \
+ 	  optimize.c morpher.c Triangulate.c \
+-	  seamer.c ptpicker.c pteditor.c \
++	  seamer.c \
+ 	  tiff.c jpeg.c png.c  multilayer.c 
+ 
+ STD_HDR = panorama.h filter.h version.h 
+ 
+ INTERNAL_HDR = fftn.h f2c.h 
+ 
+-TOOL_HDR = queryfeature.h pteditor.h ptutils.h 
++TOOL_HDR = queryfeature.h
+ 
+ SYS_HDR = sys_X11.h sys_ansi.h sys_mac.h sys_win.h 
+ 
+@@ -76,14 +76,22 @@
+ 
+ AM_CPPFLAGS = $(JAVA_FLAGS) $(JPEG_FLAGS) $(PNG_FLAGS) $(TIFF_FLAGS) $(ZLIB_FLAGS) $(WIN_DEFS) $(LIN_DEFS) $(DAR_DEFS)
+ 
++if HasJava
++JAVA_SRC = ptpicker.c pteditor.c
++JAVA_HDR = pteditor.h ptutils.h 
++else
++JAVA_SRC = fakejava.c
++JAVA_HDR =
++endif
++
+ lib_LTLIBRARIES = libpano12.la
+ 
+-libpano12_la_SOURCES = $(STD_SRC) $(X11_SRC) $(WIN_SRC) $(MAC_SRC) $(LIN_SRC) $(DAR_SRC)
++libpano12_la_SOURCES = $(STD_SRC) $(JAVA_SRC) $(X11_SRC) $(WIN_SRC) $(MAC_SRC) $(LIN_SRC) $(DAR_SRC)
+ libpano12_la_LIBADD = $(LIB_JPEG) $(LIB_PNG) $(LIB_TIFF) $(LIB_ZLIB) @PANO_WIN32_RESOURCE@
+ libpano12_la_LDFLAGS = $(LIN_LDFS) $(WIN_LDFS) $(DAR_LDFS)
+ libpano12_la_DEPENDENCIES = @PANO_WIN32_RESOURCE@
+ 
+-pkginclude_HEADERS = $(STD_HDR) $(TOOL_HDR)
++pkginclude_HEADERS = $(STD_HDR) $(TOOL_HDR) $(JAVA_HDR)
+ 
+ noinst_HEADERS = $(INTERNAL_HDR) $(SYS_HDR) $(MAC_HDR)
+ 
