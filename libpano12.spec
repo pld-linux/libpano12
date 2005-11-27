@@ -5,12 +5,12 @@
 Summary:	Panorama Tools library
 Summary(pl):	Panorama Tools - biblioteka do obróbki panoram
 Name:		libpano12
-Version:	2.7.0.11
+Version:	2.7.0.14
 Release:	1
 License:	GPL
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/panotools/%{name}-%{version}.tar.bz2
-# Source0-md5:	443bc4289b5a98d3d1b4545bf90c67df
+# Source0-md5:	4a147888367044597ad29213ffa4970d
 URL:		http://panotools.sourceforge.net/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
