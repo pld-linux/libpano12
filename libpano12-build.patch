@@ -1,0 +1,35 @@
+--- libpano12-2.8.0/tools/PTcommon.c.orig	2006-02-27 21:37:20.000000000 +0100
++++ libpano12-2.8.0/tools/PTcommon.c	2006-03-04 22:29:56.546068000 +0100
+@@ -1170,12 +1170,10 @@
+ 
+ }
+ 
+-#ifdef __Win__
+ void InsertFileName( fullPath *fp, char *fname ){
+ 	char *c = strrchr((char*)(fp->name), PATH_SEP);
+ 	if(c != NULL) c++;
+ 	else c = fp->name;
+ 	strcpy( c, fname );
+ }	
+-#endif
+ 
+--- libpano12-2.8.0/ptpicker.c.orig	2005-05-07 17:17:07.000000000 +0200
++++ libpano12-2.8.0/ptpicker.c	2006-03-04 22:29:52.805834250 +0100
+@@ -11,7 +11,7 @@
+ int loadProject( fullPath *fspec );
+ int writeProject( AlignInfo *g, fullPath *pFile);
+ int jpathTofullPath( const char* jpath, fullPath *fp );
+-void InsertFileName( fullPath *fp, char *fname );
++static void InsertFileName( fullPath *fp, char *fname );
+ void BackUp();
+ void Restore();
+ void SetAlignInfoDefaults( AlignInfo *a);
+@@ -975,7 +975,7 @@
+ 	return result;
+ }
+ 
+-void InsertFileName( fullPath *fp, char *fname ){
++static void InsertFileName( fullPath *fp, char *fname ){
+ #ifdef __Mac__
+ 	strcpy( (char*)(fp->name), fname );
+ 	c2pstr( (char*)(fp->name));
