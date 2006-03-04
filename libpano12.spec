@@ -5,12 +5,13 @@
 Summary:	Panorama Tools library
 Summary(pl):	Panorama Tools - biblioteka do obróbki panoram
 Name:		libpano12
-Version:	2.7.0.14
+Version:	2.8.0
 Release:	1
 License:	GPL
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/panotools/%{name}-%{version}.tar.bz2
-# Source0-md5:	4a147888367044597ad29213ffa4970d
+# Source0-md5:	5acac83945fe2758ef163c827cef2c99
+Patch0:		%{name}-build.patch
 URL:		http://panotools.sourceforge.net/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
@@ -58,6 +59,7 @@ Statyczna biblioteka Panorama Tools.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__libtoolize}
@@ -87,6 +89,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README README.linux doc/*.txt
 %attr(755,root,root) %{_bindir}/PTOptimizer
+%attr(755,root,root) %{_bindir}/PTblender
+%attr(755,root,root) %{_bindir}/PTmender
+%attr(755,root,root) %{_bindir}/PTtiff2psd
 %attr(755,root,root) %{_bindir}/panoinfo
 %attr(755,root,root) %{_libdir}/libpano12.so.*.*.*
 
