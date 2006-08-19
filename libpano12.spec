@@ -1,17 +1,16 @@
 #
 # Conditional build:
-%bcond_with	java	# build with Java native interface
+%bcond_with	java	# build with Java Native Interface
 #
 Summary:	Panorama Tools library
 Summary(pl):	Panorama Tools - biblioteka do obróbki panoram
 Name:		libpano12
-Version:	2.8.0
+Version:	2.8.4
 Release:	1
 License:	GPL
 Group:		Libraries
-Source0:	http://dl.sourceforge.net/panotools/%{name}-%{version}.tar.bz2
-# Source0-md5:	5acac83945fe2758ef163c827cef2c99
-Patch0:		%{name}-build.patch
+Source0:	http://dl.sourceforge.net/panotools/%{name}-%{version}.tar.gz
+# Source0-md5:	808fd8eda224c9490ef407f4d82cf8d8
 URL:		http://panotools.sourceforge.net/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
@@ -59,7 +58,6 @@ Statyczna biblioteka Panorama Tools.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %{__libtoolize}
@@ -92,6 +90,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/PTblender
 %attr(755,root,root) %{_bindir}/PTmender
 %attr(755,root,root) %{_bindir}/PTtiff2psd
+%attr(755,root,root) %{_bindir}/PTuncrop
 %attr(755,root,root) %{_bindir}/panoinfo
 %attr(755,root,root) %{_libdir}/libpano12.so.*.*.*
 
