@@ -3,7 +3,7 @@
 %bcond_with	java	# build with Java Native Interface
 #
 Summary:	Panorama Tools library
-Summary(pl.UTF-8):   Panorama Tools - biblioteka do obróbki panoram
+Summary(pl.UTF-8):	Panorama Tools - biblioteka do obróbki panoram
 Name:		libpano12
 Version:	2.8.4
 Release:	1
@@ -31,7 +31,7 @@ Panorama Tools - biblioteka do obróbki panoram.
 
 %package devel
 Summary:	Header files for Panorama Tools library
-Summary(pl.UTF-8):   Pliki nagłówkowe biblioteki Panorama Tools
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki Panorama Tools
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	libjpeg-devel >= 6b
@@ -46,7 +46,7 @@ Pliki nagłówkowe biblioteki Panorama Tools.
 
 %package static
 Summary:	Static Panorama Tools library
-Summary(pl.UTF-8):   Statyczna biblioteka Panorama Tools
+Summary(pl.UTF-8):	Statyczna biblioteka Panorama Tools
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
