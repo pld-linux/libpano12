@@ -89,6 +89,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/PTOptimizer
 %attr(755,root,root) %{_bindir}/pano12info
 %attr(755,root,root) %{_libdir}/libpano12.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libpano12.so.0
 
 %files devel
 %defattr(644,root,root,755)
