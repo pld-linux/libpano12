@@ -6,7 +6,7 @@ Summary:	Panorama Tools library
 Summary(pl.UTF-8):	Panorama Tools - biblioteka do obróbki panoram
 Name:		libpano12
 Version:	2.8.6
-Release:	3
+Release:	4
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/panotools/%{name}-%{version}.tar.gz
